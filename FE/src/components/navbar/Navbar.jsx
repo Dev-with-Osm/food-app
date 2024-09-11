@@ -16,7 +16,7 @@ export default function Navbar() {
           >
             {nav ? <CloseIcon /> : <MenuIcon />}
           </div>
-          <p className="text-3xl font-semibold ">
+          <p className="text-xl md:text-3xl font-semibold ">
             Gourmet <span className="text-[#ff9100]">Éolien</span>
           </p>
           <ul className="hidden md:flex items-center ml-16">
@@ -32,7 +32,7 @@ export default function Navbar() {
         </div>
         <OutsideClickHandler onOutsideClick={() => setNav(false)}>
           <div>
-            <button className="bg-[#ff9100] text-xl font-semibold py-2 px-6 rounded-full text-white hover:-tracking-tighter duration-300 ease-in-out">
+            <button className="bg-[#ff9100] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:-tracking-tighter duration-300 ease-in-out">
               Login
             </button>
           </div>
