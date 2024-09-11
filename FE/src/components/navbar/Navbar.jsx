@@ -45,11 +45,11 @@ export default function Navbar() {
           >
             {/* Mobile Logo */}
             {/* Mobile Navigation Items */}
-            <div className="mt-5 flex flex-col items-center justify-center h-3/4">
+            <div className="mt-5 flex flex-col items-center justify-center h-full pb-20">
               {navigation.map((item) => (
                 <li
                   key={item.id}
-                  className="flex items-center justify-center m  p-4  text-lg duration-300 font-semibold cursor-pointer"
+                  className="flex items-center justify-center  p-4  text-lg duration-300 font-semibold cursor-pointer"
                 >
                   <p onClick={() => setNav(false)} to={item.url}>
                     {item.title}
