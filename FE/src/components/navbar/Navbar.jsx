@@ -5,9 +5,35 @@ import { navigation } from './Constants';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 import oneeLogo from '../../assets/images/oneeLogo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import CartIcon from '../../assets/icons/cartIcon';
+import LogoutIcon from '../../assets/icons/logoutIcon';
+import {
+  signOutUserFailure,
+  signOutUserStart,
+  signOutUserSuccess,
+} from '../../redux/user/userSlice';
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+  const handleLogout = async () => {
+    console.log('test');
+
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/v1/auth/logout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+      dispatch(signOutUserSuccess(data.data));
+    } catch (error) {
+      dispatch(signOutUserFailure(error.message));
+    }
+  };
   return (
     <div className="shadow-sm">
       <div className="flex justify-between items-center py-4 md:py-0 max-w-[1240px] mx-auto px-4">
@@ -45,12 +71,29 @@ export default function Navbar() {
         </div>
         <OutsideClickHandler onOutsideClick={() => setNav(false)}>
           <div>
-            <Link
-              to={'/login'}
-              className="bg-[#B2CBAD] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:tracking-widest hover:text-[#302e29] duration-300 ease-in-out"
-            >
-              Connexion
-            </Link>
+            {currentUser ? (
+              <div className="flex gap-4 items-center">
+                {currentUser.user.role === 'admin' && <p>Admin panel</p>}
+                <CartIcon
+                  className={
+                    'cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out'
+                  }
+                />
+                <button
+                  onClick={handleLogout}
+                  className="bg-[#ADC6A1] p-2 rounded-full text-white hover:text-[#302e29] duration-200 ease-in-out"
+                >
+                  <LogoutIcon />
+                </button>
+              </div>
+            ) : (
+              <Link
+                to={'/login'}
+                className="bg-[#B2CBAD] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:tracking-widest hover:text-[#302e29] duration-300 ease-in-out"
+              >
+                Connexion
+              </Link>
+            )}
           </div>
           <ul
             className={

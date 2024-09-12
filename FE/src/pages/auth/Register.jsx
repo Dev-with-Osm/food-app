@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LockIcon from '../../assets/icons/lockIcon';
 import EnvlopeIcon from '../../assets/icons/envlopeIcon';
 import PersonIcon from '../../assets/icons/personIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+} from '../../redux/user/userSlice';
 
 export default function Register() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -70,6 +79,28 @@ export default function Register() {
     if (Object.keys(newErrors).length === 0) {
       console.log('Sign-up successful');
       console.log(formData);
+      dispatch(signInStart());
+
+      try {
+        const res = await fetch('/api/v1/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        console.log(data);
+        // If there is an error, display it
+        if (data.success === false) {
+          dispatch(signInFailure(data.message));
+          return;
+        }
+        dispatch(signInSuccess(data.data));
+        navigate('/');
+      } catch (error) {
+        dispatch(signInFailure(error.message));
+      }
     } else {
       console.log('Sign-up failed');
     }
@@ -80,7 +111,7 @@ export default function Register() {
       <div className="border border-[#B2CBAD] mx-3 rounded-md w-full md:w-auto p-6 px-5">
         <div className="flex flex-col items-center border-b-2 pb-4">
           <p className="text-[#2C3E50] font-semibold">Bienvenue</p>
-          <h1 className="text-base text-[#2C2C54] opacity-90 font-medium">
+          <h1 className="text-base text-center text-[#2C2C54] opacity-90 font-medium">
             Créez votre compte gratuitement maintenant
           </h1>
         </div>
@@ -177,6 +208,7 @@ export default function Register() {
             >
               S'inscrire
             </button>
+            {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
             <p className="text-[11px] text-right">
               Vous avez déjà un compte ?{' '}
               <Link
