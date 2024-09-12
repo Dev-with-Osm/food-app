@@ -1,22 +1,17 @@
 export const navigation = [
   {
     id: '0',
-    title: 'Home',
+    title: 'Accueil',
     url: '/',
   },
   {
     id: '1',
-    title: 'Posts',
-    url: '/posts',
+    title: 'Catégorie',
+    url: '/category',
   },
   {
     id: '2',
-    title: 'About',
-    url: '/about',
-  },
-  {
-    id: '3',
-    title: 'Support',
-    url: '/support',
+    title: 'Menu',
+    url: '/menu',
   },
 ];

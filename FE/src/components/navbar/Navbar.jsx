@@ -3,6 +3,8 @@ import CloseIcon from '../../assets/icons/closeIcon';
 import MenuIcon from '../../assets/icons/menuIcon';
 import { navigation } from './Constants';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { Link } from 'react-router-dom';
+import oneeLogo from '../../assets/images/oneeLogo.png';
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
@@ -16,25 +18,39 @@ export default function Navbar() {
           >
             {nav ? <CloseIcon /> : <MenuIcon />}
           </div>
-          <p className="text-xl md:text-3xl font-semibold ">
-            Gourmet <span className="text-[#ff9100]">Éolien</span>
-          </p>
+          <Link
+            to={'/'}
+            className="text-xl md:text-xl relative font-semibold   items-center gap-2"
+          >
+            <span className="md:mb-6">
+              <img src={oneeLogo} className="w-24" alt="" />
+            </span>
+            <p>
+              Gourmet <span className="text-[#B2CBAD]">Éolien</span>
+            </p>
+            {/* <span className="absolute -bottom-8 right-0">
+              <img src={oneeLogo} className="w-24" alt="" />
+            </span> */}
+          </Link>
           <ul className="hidden md:flex items-center ml-16">
             {navigation.map((item) => (
               <li
                 key={item.id}
-                className="p-4 rounded-xl my-2 cursor-pointer duration-300 hover:text-text-secondary"
+                className="p-4 rounded-xl my-2 cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out text-lg font-semibold"
               >
-                <p to={item.url}>{item.title}</p>
+                <Link to={item.url}>{item.title}</Link>
               </li>
             ))}
           </ul>
         </div>
         <OutsideClickHandler onOutsideClick={() => setNav(false)}>
           <div>
-            <button className="bg-[#ff9100] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:-tracking-tighter duration-300 ease-in-out">
-              Login
-            </button>
+            <Link
+              to={'/login'}
+              className="bg-[#B2CBAD] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:tracking-widest hover:text-[#302e29] duration-300 ease-in-out"
+            >
+              Connexion
+            </Link>
           </div>
           <ul
             className={
@@ -43,17 +59,17 @@ export default function Navbar() {
                 : 'ease-in-out flex flex-col  w-[60%] z-[99] duration-500 fixed top-0 bottom-0 left-[-100%] '
             }
           >
-            {/* Mobile Logo */}
-            {/* Mobile Navigation Items */}
+            {/* Logo Mobile */}
+            {/* Éléments de Navigation Mobile */}
             <div className="mt-5 flex flex-col items-center justify-center h-full pb-20">
               {navigation.map((item) => (
                 <li
                   key={item.id}
                   className="flex items-center justify-center  p-4  text-lg duration-300 font-semibold cursor-pointer"
                 >
-                  <p onClick={() => setNav(false)} to={item.url}>
+                  <Link onClick={() => setNav(false)} to={item.url}>
                     {item.title}
-                  </p>
+                  </Link>
                 </li>
               ))}
             </div>
