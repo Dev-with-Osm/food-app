@@ -13,14 +13,13 @@ import {
   signOutUserStart,
   signOutUserSuccess,
 } from '../../redux/user/userSlice';
+import AdminNav from './AdminNav';
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const handleLogout = async () => {
-    console.log('test');
-
     try {
       dispatch(signOutUserStart());
       const res = await fetch('/api/v1/auth/logout');
@@ -73,7 +72,11 @@ export default function Navbar() {
           <div>
             {currentUser ? (
               <div className="flex gap-4 items-center">
-                {currentUser.user.role === 'admin' && <p>Admin panel</p>}
+                {currentUser.user.role === 'admin' && (
+                  <div className="hidden md:block">
+                    <AdminNav />
+                  </div>
+                )}
                 <CartIcon
                   className={
                     'cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out'
@@ -89,7 +92,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to={'/login'}
-                className="bg-[#B2CBAD] md:text-xl py-1 px-4 font-semibold md:py-2 md:px-6 rounded-full text-white hover:tracking-widest hover:text-[#302e29] duration-300 ease-in-out"
+                className="bg-[#B2CBAD] md:text-xl  px-4 font-semibold py-2 md:px-6 rounded-full text-white hover:tracking-widest hover:text-[#302e29] duration-300 ease-in-out"
               >
                 Connexion
               </Link>
@@ -115,6 +118,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              <AdminNav />
             </div>
           </ul>
         </OutsideClickHandler>

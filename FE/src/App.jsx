@@ -4,6 +4,8 @@ import HomePage from './pages/homePage/HomePage';
 import CategoryPage from './pages/categoryPage/CategoryPage';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import AdminPanel from './pages/adminPanel/AdminPanel';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 export default function App() {
   return (
@@ -14,6 +16,9 @@ export default function App() {
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/admin" element={<AdminPanel />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

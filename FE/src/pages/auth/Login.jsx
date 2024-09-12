@@ -101,6 +101,7 @@ export default function Login() {
                 placeholder="exemple@onee.ma"
                 type="email"
                 name="email"
+                disabled={loading}
                 value={formData.email}
                 onChange={handleInputChange}
                 className="border-2 border-solid border-text-[#ADC6A1] focus:border-0 bg-transparent hover:border-[#ADC6A1] focus:ring-2 outline-none focus:ring-[#ADC6A1] transition-all duration-300 ease-in-out cursor-pointer py-2.5 pl-10 rounded-md disabled:cursor-not-allowed placeholder:text-xs placeholder:text-text-secondary w-full"
@@ -121,6 +122,7 @@ export default function Login() {
                 placeholder="Mot de passe secret"
                 type="password"
                 name="password"
+                disabled={loading}
                 value={formData.password}
                 onChange={handleInputChange}
                 className="border-2 border-solid border-text-[#ADC6A1] focus:border-0 bg-transparent hover:border-[#ADC6A1] focus:ring-2 outline-none focus:ring-[#ADC6A1] transition-all duration-300 ease-in-out cursor-pointer py-2.5 pl-10 rounded-md disabled:cursor-not-allowed placeholder:text-xs placeholder:text-text-secondary w-full"
@@ -135,7 +137,7 @@ export default function Login() {
               type="submit"
               className="bg-[#B2CBAD] hover:border-[#755d8c] transition-all duration-300 ease-in-out py-2 w-full rounded-md text-black text-xl font-semibold hover:bg-[#F9B5AC]"
             >
-              Connexion
+              {loading ? 'loading...' : 'Connexion'}
             </button>
             {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
             <p className="text-[11px] text-right">

@@ -21,7 +21,7 @@ export default function HomePage() {
               WebkitBackgroundClip: 'text',
               color: 'transparent',
             }}
-            className="text-3xl font-extrabold"
+            className="text-4xl font-extrabold"
           >
             Restauration
           </span>

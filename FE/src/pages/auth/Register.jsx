@@ -130,6 +130,7 @@ export default function Register() {
                 <input
                   placeholder="Prénom"
                   type="text"
+                  disabled={loading}
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
@@ -150,6 +151,7 @@ export default function Register() {
                 <input
                   placeholder="Nom"
                   type="text"
+                  disabled={loading}
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
@@ -172,6 +174,7 @@ export default function Register() {
                 placeholder="exemple@onee.ma"
                 value={formData.email}
                 type="email"
+                disabled={loading}
                 name={'email'}
                 onChange={handleInputChange}
                 className="border-2 border-solid border-text-[#ADC6A1] focus:border-0 bg-transparent hover:border-[#ADC6A1] focus:ring-2 outline-none focus:ring-[#ADC6A1] transition-all duration-300 ease-in-out cursor-pointer py-2.5 pl-10 rounded-md disabled:cursor-not-allowed  placeholder:text-xs placeholder:text-text-secondary w-full"
@@ -192,6 +195,7 @@ export default function Register() {
                 placeholder="Mot de passe secret"
                 type="password"
                 name="password"
+                disabled={loading}
                 value={formData.password}
                 onChange={handleInputChange}
                 className="border-2 border-solid border-text-[#ADC6A1] focus:border-0 bg-transparent hover:border-[#ADC6A1] focus:ring-2 outline-none focus:ring-[#ADC6A1] transition-all duration-300 ease-in-out cursor-pointer py-2.5 pl-10 rounded-md disabled:cursor-not-allowed  placeholder:text-xs placeholder:text-text-secondary w-full"
@@ -206,7 +210,7 @@ export default function Register() {
               type="submit"
               className=" bg-[#B2CBAD] hover:border-[#755d8c] transition-all duration-300 ease-in-out py-2 w-full rounded-md text-black text-xl font-semibold hover:bg-[#F9B5AC]"
             >
-              S'inscrire
+              {loading ? 'loading...' : "S'inscrire"}
             </button>
             {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
             <p className="text-[11px] text-right">
