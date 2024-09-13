@@ -166,4 +166,55 @@ const deleteDish = async (req, res) => {
   }
 };
 
-module.exports = { addNewDish, editDish, toggleIsOnMenuToday, deleteDish };
+const getAllDishes = async (req, res) => {
+  const userId = req.user.id;
+
+  const isAdmin = await checkAdminPrivileges(userId, res);
+  if (isAdmin !== true) return;
+  try {
+    const dishes = await Dish.find();
+    res.status(200).json({
+      message: 'Dishes fetched successfully',
+      success: true,
+      data: dishes,
+    });
+  } catch (error) {
+    console.error('Error get all dishes:', error);
+    res.status(500).json({
+      message: 'Something went wrong. Please try again later.',
+      success: false,
+      data: error.message,
+    });
+  }
+};
+const getSingleDish = async (req, res) => {
+  const userId = req.user.id;
+  const { dishId } = req.params;
+
+  const isAdmin = await checkAdminPrivileges(userId, res);
+  if (isAdmin !== true) return;
+  try {
+    const dish = await Dish.findById(dishId);
+    res.status(200).json({
+      message: 'Dishes fetched successfully',
+      success: true,
+      data: dish,
+    });
+  } catch (error) {
+    console.error('Error get all dishes:', error);
+    res.status(500).json({
+      message: 'Something went wrong. Please try again later.',
+      success: false,
+      data: error.message,
+    });
+  }
+};
+
+module.exports = {
+  addNewDish,
+  editDish,
+  toggleIsOnMenuToday,
+  deleteDish,
+  getSingleDish,
+  getAllDishes,
+};

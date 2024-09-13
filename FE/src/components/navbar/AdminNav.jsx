@@ -16,7 +16,7 @@ export default function AdminNav() {
             menu && ' !bg-[#088178]'
           }`}
         >
-          Admin panel
+          Panneau <br className="md:hidden" /> d'administration
           <ArrowDown
             className={`w-5 transform transition-transform duration-300 ${
               menu ? 'rotate-180' : ''
@@ -26,19 +26,39 @@ export default function AdminNav() {
         <div
           className={`transition-all duration-500 ease-in-out ${
             menu ? 'block' : 'hidden'
-          } bg-transparent z-10 absolute w-[155px] md:w-40 md:right-[90px] md:top-12 md:mt-5 mt-2 mr-5 2xl:mr-40`}
+          } bg-transparent z-10 absolute w-[180px] md:w-[250px] md:right-[90px] md:top-12 md:mt-5 mt-2 mr-5 2xl:mr-40`}
         >
-          <div className="flex items-center justify-center gap-3 text-white  flex-col rounded-md border-white border bg-green-500 shadow-md p-3">
-            <Link>All dishes</Link>
+          <div className="flex items-center justify-center gap-3 text-white flex-col rounded-md border-white border bg-green-500 shadow-md p-3">
+            <Link
+              to={'/all-dishes'}
+              className="hover:text-[#302e29] ease-in-out duration-200"
+            >
+              Tous les plats
+            </Link>
             <hr className="h-[1px] bg-white w-full " />
 
-            <Link>Add new dish</Link>
+            <Link
+              to={'/add-new-dish'}
+              className="hover:text-[#302e29] ease-in-out duration-200"
+            >
+              Ajouter un nouveau plat
+            </Link>
             <hr className="h-[0.5px] bg-white w-full " />
 
-            <Link>Edit dish</Link>
+            <Link
+              to={'/edit-dish'}
+              className="hover:text-[#302e29] ease-in-out duration-200"
+            >
+              Modifier un plat
+            </Link>
             <hr className="h-[0.5px] bg-white w-full " />
 
-            <Link>Delete dish</Link>
+            <Link
+              to={'/delete-dish'}
+              className="hover:text-[#302e29] ease-in-out duration-200"
+            >
+              Supprimer un plat
+            </Link>
           </div>
         </div>
       </OutsideClickHandler>

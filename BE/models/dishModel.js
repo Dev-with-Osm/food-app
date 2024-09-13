@@ -21,20 +21,6 @@ const dishSchema = new mongoose.Schema(
         },
       },
     ],
-    nutritionalInformation: {
-      calories: {
-        type: Number,
-      },
-      fat: {
-        type: Number,
-      },
-      carbohydrates: {
-        type: Number,
-      },
-      protein: {
-        type: Number,
-      },
-    },
     isOnMenuToday: {
       type: Boolean,
       default: true,

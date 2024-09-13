@@ -5,9 +5,13 @@ const {
   editDish,
   toggleIsOnMenuToday,
   deleteDish,
+  getAllDishes,
+  getSingleDish,
 } = require('../controllers/adminController');
 const router = express.Router();
 
+router.get('/', verifyToken, getAllDishes);
+router.get('/:dishId', verifyToken, getSingleDish);
 router.post('/add-dish', verifyToken, addNewDish);
 router.put('/edit-dish/:dishId', verifyToken, editDish);
 router.delete('/delete-dish/:dishId', verifyToken, deleteDish);
