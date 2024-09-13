@@ -23,8 +23,6 @@ export default function AllDishes() {
           {allDishes.map((item) => (
             <DishItem dishId={item._id} key={item._id} />
           ))}
-          {/* </div> */}
-          {/* </div> */}
         </div>
       </div>
     </div>

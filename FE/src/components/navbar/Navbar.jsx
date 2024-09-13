@@ -14,6 +14,7 @@ import {
   signOutUserSuccess,
 } from '../../redux/user/userSlice';
 import AdminNav from './AdminNav';
+import CategoryDropdown from './CategoryDropdown';
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
@@ -67,6 +68,7 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <CategoryDropdown />
         </div>
         <OutsideClickHandler onOutsideClick={() => setNav(false)}>
           <div>
@@ -118,6 +120,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              <CategoryDropdown />
               <AdminNav />
             </div>
           </ul>
