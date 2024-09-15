@@ -13,11 +13,14 @@ export default function MenuPage() {
     };
     fetchAllDishes();
   }, []);
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen px-4">
       <div className="max-w-6xl w-full text-center my-14 flex flex-col gap-5">
-        <h1 className="my-5 text-2xl font-semibold">Our menu for today</h1>
-        <h2 className="text-2xl text-left font-semibold">Entree plats:</h2>
+        <h1 className="my-5 text-2xl font-semibold">
+          Notre menu pour aujourd'hui
+        </h1>
+        <h2 className="text-2xl text-left font-semibold">Entrées :</h2>
         <div className="flex gap-5 md:justify-normal justify-center items-center flex-wrap">
           {allDishes
             .filter((item) => item.isOnMenuToday && item.category === 'Entrée')
@@ -25,9 +28,7 @@ export default function MenuPage() {
               <DishItem dishId={item._id} key={item._id} />
             ))}
         </div>
-        <h2 className="text-2xl text-left font-semibold">
-          Les plats principall:
-        </h2>
+        <h2 className="text-2xl text-left font-semibold">Plats principaux :</h2>
         <div className="flex gap-5 md:justify-normal justify-center items-center flex-wrap">
           {allDishes
             .filter(
@@ -38,7 +39,7 @@ export default function MenuPage() {
               <DishItem dishId={item._id} key={item._id} />
             ))}
         </div>
-        <h2 className="text-2xl text-left font-semibold">Les plats Dessert:</h2>
+        <h2 className="text-2xl text-left font-semibold">Desserts :</h2>
         <div className="flex gap-5 md:justify-normal justify-center items-center flex-wrap">
           {allDishes
             .filter((item) => item.isOnMenuToday && item.category === 'Dessert')
@@ -46,7 +47,7 @@ export default function MenuPage() {
               <DishItem dishId={item._id} key={item._id} />
             ))}
         </div>
-        <h2 className="text-2xl text-left font-semibold">Les Boissons:</h2>
+        <h2 className="text-2xl text-left font-semibold">Boissons :</h2>
         <div className="flex gap-5 md:justify-normal justify-center items-center flex-wrap">
           {allDishes
             .filter((item) => item.isOnMenuToday && item.category === 'Boisson')

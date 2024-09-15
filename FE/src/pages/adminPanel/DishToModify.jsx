@@ -7,7 +7,7 @@ export default function DishToModify() {
 
   useEffect(() => {
     const fetchAllDishes = async () => {
-      const res = await fetch('/api/v1/admin/');
+      const res = await fetch('/api/v1/dishes/');
       const data = await res.json();
       setAllDishes(data.data);
     };

@@ -50,7 +50,7 @@ export default function EditDish() {
   useEffect(() => {
     // Fetch dish data by dishId when the component mounts
     const fetchDishData = async () => {
-      const res = await fetch(`/api/v1/admin/${dishId}`);
+      const res = await fetch(`/api/v1/dishes/${dishId}`);
       const dishData = await res.json();
 
       setFormData({
