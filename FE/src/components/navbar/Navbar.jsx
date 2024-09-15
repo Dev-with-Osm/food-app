@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CloseIcon from '../../assets/icons/closeIcon';
 import MenuIcon from '../../assets/icons/menuIcon';
 import { navigation } from './Constants';
@@ -20,6 +20,28 @@ export default function Navbar() {
   const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await fetch('/api/v1/user/cart');
+        const data = await res.json();
+        setCart(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (currentUser) {
+      // Fetch cart every 10 seconds (10000 ms)
+      const intervalId = setInterval(fetchCart, 1000);
+
+      // Cleanup on component unmount
+      return () => clearInterval(intervalId);
+    }
+  }, []);
+
   const handleLogout = async () => {
     try {
       dispatch(signOutUserStart());
@@ -67,8 +89,8 @@ export default function Navbar() {
                 <Link to={item.url}>{item.title}</Link>
               </li>
             ))}
+            <CategoryDropdown />
           </ul>
-          <CategoryDropdown />
         </div>
         <OutsideClickHandler onOutsideClick={() => setNav(false)}>
           <div>
@@ -79,11 +101,20 @@ export default function Navbar() {
                     <AdminNav />
                   </div>
                 )}
-                <CartIcon
-                  className={
-                    'cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out'
-                  }
-                />
+                <span className="relative">
+                  <div
+                    className={`${
+                      cart?.length > 0 ? 'bg-red-400' : ''
+                    } w-3 h-3 rounded-full absolute -top-1 -right-1`}
+                  ></div>
+                  <Link to={'/cart'}>
+                    <CartIcon
+                      className={
+                        'cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out'
+                      }
+                    />
+                  </Link>
+                </span>
                 <button
                   onClick={handleLogout}
                   className="bg-[#ADC6A1] p-2 rounded-full text-white hover:text-[#302e29] duration-200 ease-in-out"

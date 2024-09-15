@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import DishItem from './DishItem';
+import DishItem from '../adminPanel/DishItem';
 
-export default function AllDishes() {
+export default function PlatPrincipal() {
   const [allDishes, setAllDishes] = useState([]);
 
   useEffect(() => {
@@ -16,12 +16,13 @@ export default function AllDishes() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen px-4">
       <div className="max-w-6xl w-full text-center my-14">
-        <h1 className="my-5 text-2xl font-semibold">Les plats d'entrée :</h1>
-        {/* <div className="my-10 flex justify-center"> */}
+        <h1 className="my-5 text-2xl font-semibold">Tous les plats d'entrée</h1>
         <div className="flex gap-5 justify-center items-center flex-wrap">
-          {allDishes.map((item) => (
-            <DishItem dishId={item._id} key={item._id} />
-          ))}
+          {allDishes
+            .filter((item) => item.category === 'Plat Principal')
+            .map((item) => (
+              <DishItem dishId={item._id} key={item._id} />
+            ))}
         </div>
       </div>
     </div>

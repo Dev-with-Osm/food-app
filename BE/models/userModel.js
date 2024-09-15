@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
+// Define the schema for each cart item
+const cartItemSchema = {
+  dish: {
+    type: Schema.Types.ObjectId,
+    ref: 'Dish', // Reference to the Dish model
+    required: true,
+  },
+};
+
+// Define the user schema
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -28,16 +39,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 'user',
     },
-    cart: {
-      type: [
-        {
-          name: { type: String, required: true },
-          category: { type: String, required: true },
-          quantity: { type: Number, required: true },
-        },
-      ],
-      default: [],
-    },
+    cart: [cartItemSchema],
   },
   { timestamps: true },
 );

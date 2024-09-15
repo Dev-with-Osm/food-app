@@ -46,7 +46,9 @@
     margin-top: 3px;
   }
   .tag-close-icon {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 16px;
     height: 16px;
     line-height: 16px;

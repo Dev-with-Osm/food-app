@@ -2,11 +2,17 @@ import React from 'react';
 import CloseIcon from '../../assets/icons/closeIcon';
 import './style.css';
 
-export default function Tags({ tags, setTags }) {
+export default function Tags({ tags = [], setTags }) {
   const addTags = (e) => {
-    if (e.key === 'Enter' && e.target.value !== '') {
-      setTags([...tags, { name: e.target.value }]);
-      e.target.value = '';
+    const tagValue = e.target.value.trim();
+    if (e.key === 'Enter' && tagValue !== '') {
+      // Prevent duplicate tags
+      if (
+        !tags.find((tag) => tag.name.toLowerCase() === tagValue.toLowerCase())
+      ) {
+        setTags([...tags, { name: tagValue }]);
+      }
+      e.target.value = ''; // Clear input field
     }
   };
 
@@ -20,8 +26,8 @@ export default function Tags({ tags, setTags }) {
         {tags.map((tag, index) => (
           <li key={index} className="tag">
             <span className="tag-title">{tag.name}</span>{' '}
-            <span onClick={() => removeTags(index)}>
-              <CloseIcon className="tag-close-icon" />
+            <span onClick={() => removeTags(index)} className="tag-close-icon">
+              <CloseIcon />
             </span>
           </li>
         ))}

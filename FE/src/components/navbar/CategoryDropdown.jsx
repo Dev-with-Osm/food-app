@@ -11,9 +11,11 @@ export default function CategoryDropdown() {
       <OutsideClickHandler onOutsideClick={() => setMenu(false)}>
         <button
           onClick={() => setMenu((prevState) => !prevState)}
-          className="p-4 rounded-xl my-2 cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out text-lg font-semibold flex items-center gap-2"
+          className={`p-4 rounded-xl my-2 cursor-pointer duration-300 hover:text-[#B2CBAD] ease-in-out text-lg font-semibold flex items-center gap-2 ${
+            menu ? 'text-[#B2CBAD]' : ''
+          }`}
         >
-          ctee
+          Catégorie
           <ArrowDown
             className={`w-5 transform transition-transform duration-300 ${
               menu ? 'rotate-180' : ''
@@ -28,7 +30,7 @@ export default function CategoryDropdown() {
         >
           <div className="flex items-center justify-center gap-3 text-white flex-col rounded-md border-white border bg-green-500 shadow-md p-3">
             <Link
-              to={'/all-dishes'}
+              to={'/category/entree'}
               className="hover:text-[#302e29] ease-in-out duration-200"
             >
               Entree
@@ -36,7 +38,7 @@ export default function CategoryDropdown() {
             <hr className="h-[1px] bg-white w-full " />
 
             <Link
-              to={'/add-new-dish'}
+              to={'/category/plat-principal'}
               className="hover:text-[#302e29] ease-in-out duration-200"
             >
               Plat Principal
@@ -44,7 +46,7 @@ export default function CategoryDropdown() {
             <hr className="h-[0.5px] bg-white w-full " />
 
             <Link
-              to={'/edit-dish'}
+              to={'/category/dessert'}
               className="hover:text-[#302e29] ease-in-out duration-200"
             >
               Dessert
@@ -52,7 +54,7 @@ export default function CategoryDropdown() {
             <hr className="h-[0.5px] bg-white w-full " />
 
             <Link
-              to={'/delete-dish'}
+              to={'/category/boissons'}
               className="hover:text-[#302e29] ease-in-out duration-200"
             >
               Boisson

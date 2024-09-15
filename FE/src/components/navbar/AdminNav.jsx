@@ -48,15 +48,7 @@ export default function AdminNav() {
               to={'/edit-dish'}
               className="hover:text-[#302e29] ease-in-out duration-200"
             >
-              Modifier un plat
-            </Link>
-            <hr className="h-[0.5px] bg-white w-full " />
-
-            <Link
-              to={'/delete-dish'}
-              className="hover:text-[#302e29] ease-in-out duration-200"
-            >
-              Supprimer un plat
+              Supprimer / Modifier un plat
             </Link>
           </div>
         </div>

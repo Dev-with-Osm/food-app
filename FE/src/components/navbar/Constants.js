@@ -4,11 +4,7 @@ export const navigation = [
     title: 'Accueil',
     url: '/',
   },
-  // {
-  //   id: '1',
-  //   title: 'Catégorie',
-  //   url: '/category',
-  // },
+
   {
     id: '1',
     title: 'Menu',

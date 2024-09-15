@@ -20,6 +20,7 @@ app.use('/api/v1/auth', require('./routes/authRoutes.js'));
 app.use('/api/v1/test', require('./routes/testRoutes'));
 app.use('/api/v1/user', require('./routes/userRoutes.js'));
 app.use('/api/v1/admin', require('./routes/adminRoutes.js'));
+app.use('/api/v1/dishes', require('./routes/dishRoutes.js'));
 
 app.get('/', (req, res) => {
   return res.status(200).send('<h1>welcome to food server API</h1>');

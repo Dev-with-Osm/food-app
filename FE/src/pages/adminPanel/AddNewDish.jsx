@@ -222,8 +222,8 @@ export default function AddNewDish() {
                   disabled={loading}
                 >
                   <option value="">Sélectionnez une catégorie</option>
-                  <option value="Entree">Entrée</option>
-                  <option value="Plat-Principal">Plat Principal</option>
+                  <option value="Entrée">Entrée</option>
+                  <option value="Plat Principal">Plat Principal</option>
                   <option value="Dessert">Dessert</option>
                   <option value="Boisson">Boisson</option>
                 </select>
